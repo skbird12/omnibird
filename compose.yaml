@@ -44,6 +44,12 @@ services:
         interval: 5s
         retries: 10
 
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 10.200.0.0/24
+
 
 volumes:
   db-data: {}

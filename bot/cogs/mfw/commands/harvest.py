@@ -10,17 +10,27 @@ from languages import l
 async def harvest(self, ctx):
         COOLDOWN_IN_SECONDS = 600
         now = datetime.now()
-        reminder_at = now + timedelta(seconds=COOLDOWN_IN_SECONDS)
         async with db.transaction() as cur:
             info = await dbutils.get_user_info(ctx.author.id, cur=cur, for_update=True)
-            #TODO rarity -1 accelerates harvest speed by 25%
-            """
-            cur.execute("SELECT i.mfw_id, COUNT(*) from inventory" \
-            "INNER JOIN mfws m on i.mfw_id = m.mfw_id" \
-            "INNER JOIN rarities r ON m.rarity_id = r.id" \
-            "WHERE m.rarity_id = -1" \
-            "GROUP BY i.mfw_id")
-            """
+
+            # Having rarity -1 mfws accelerates harvest speed by 20% (proportional)
+            await cur.execute("""SELECT
+            COUNT(DISTINCT i.mfw_id) AS owned_count,
+            (
+                SELECT COUNT(m.id) FROM mfws m
+                WHERE m.rarity_id = -1
+            ) AS total_count
+            FROM inventory i
+            INNER JOIN mfws m ON i.mfw_id = m.id
+            WHERE i.user_id = %s AND m.rarity_id = -1""", (ctx.author.id,))
+            row = await cur.fetchone()
+            owned_count, total_count = row
+            if total_count > 0:
+                owned_ratio = owned_count/total_count
+                reduction = 0.2 * owned_ratio
+                COOLDOWN_IN_SECONDS *= (1-reduction)
+            reminder_at = now + timedelta(seconds=COOLDOWN_IN_SECONDS)
+
             # 1 = row found
             await cur.execute("""UPDATE users
             SET last_harvest = %s, reminder_at = %s, last_harvest_channel = %s

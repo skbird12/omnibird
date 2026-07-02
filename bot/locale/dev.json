@@ -218,7 +218,7 @@
                 "description": "Fuck these rare harvests. Legendary: 99%"
             },
             "completionist_harvest": {
-                "name": "Completionist's Harvest",
+                "name": "Completionist Harvest",
                 "description": "Guaranteed: 15 Commons, 12 Uncommons, 10 Rares, 5 Epics, 1 Legendary, 5 Letterlings and 3 Petlings. No illegal gambling here, EU!"
             },
             "keyboard_harvest": {
@@ -367,6 +367,15 @@
     },
     "grant": {
         "command": "grant",
+        "description": "skanderbird only",
+        "not_admin": "Nice try",
+        "no_target": "Target required",
+        "no_values": "No mfws",
+        "fail": "Balls on {value}!",
+        "success": "All done"
+    },
+    "grantmoney": {
+        "command": "grantmoney",
         "description": "skanderbird only",
         "not_admin": "Nice try",
         "no_target": "Target required",
@@ -792,7 +801,7 @@
     "message_400": " at 3 am!",
     "message_401": " after opening a dark fountain!",
     "message_402": " after keeping a mfw in a jar. Ew.",
-    "message_403": ". Posting this on behalf of Slimeakku, but she is in dire need of everyone's help. She hasn't been doing good financially, bills have been piling and her house has been falling apart and needs repairs, as well as possibly being out of a job this year. She's asking for anyone's help to support her on GoFundMe, no matter how big or small the donation is. She's also opened up YT Memberships for anyone else who wants to donate in any other way.\n\nHere is the GoFundMe: https://gofund.me/8bd34e1c3\n",
+    "message_403": ". What a fucking waste of 10 minutes.",
     "message_404": " against its will, you monster!",
     "message_405": " after destroying the economy!",
     "message_406": " exclusively through Snowielib!",
@@ -808,7 +817,7 @@
     "message_416": ". My balls hurt\n",
     "message_417": ". Enter the world of Plants vs. Zombies 2: Lysergic, developed by Kabibambi, this challenging mod enhances the original game with custom levels, redesigned plants, and vibrant visuals. Experience a unique 25 sun economy system and free power-ups with strategic cooldowns in this “muy difícil” take on PvZ2.",
     "message_418": " before your parents restricted access to your PC!",
-    "message_419": " but We need your HELP! Addendum is calling on all artists, animators, pvz2 OBB coders, level makers, composers & QA testers to join us for the journey ahead! https://forms.gle/jhJheDBHTbkjZvx29",
+    "message_419": " but We need your HELP! Addendum is calling on all artists, animators, pvz2 OBB coders, level makers, composers & QA testers to join us for the journey ahead! https://docs.google.com/document/d/1ApokMzwbjjcfqj53o-rMcOs6X0bE_F4EOVVAZGBI82c/edit?usp=drivesdk",
     "message_420": ". Just Monika.",
     "message_421": ". You can now play as {mfw}.",
     "message_422": " and {mfw} (**Mythical**)! That's a new mfw to your collection! Just kidding.",
@@ -834,7 +843,29 @@
     "message_442": ". I appreciate you trying to moderate, I really do, but you clearly have no clue what's going on here right now so let's just leave it at that\n",
     "message_443": ". I am baffled at the depths of your malevolence and effort to disguise your lies and hatred about me that you gossiped in private out here in this server.",
     "message_444": ", which was once a Legendary!",
-    "message_445": " after faking a suicide to win it in a giveaway!"
+    "message_445": " after faking a suicide to win it in a giveaway!",
+    "message_446": " by claiming to be pro-life yet causing a genocide everytime you masturbate!",
+    "message_447": " by wishing to see new harvest lines!",
+    "message_448": ", which was considered ragebait by Maci!",
+    "message_449": ". I don't know what's worse. The fact that we don't have a Crimson Front Zomboss fight because the devs are \"too busy with real life\" and can't be bothered to make one, or the fact that they made Kiwi Kong, a plant based on the Chinese mythical figure Sun Wukong, say a brainrot phase like Sigma. Wtf are you even making this PVZ2 mod, man?\nA bunch of brain-rotted iPad babies with too much time on their hands, from what I see. I wouldn't be surprised that the same idiots who wrote the egggurt survey episode also wrote Zombert's dialogue, since only a dumb idiot with 1 brain and no sense of cringe would write such stuff.",
+    "message_450": " from the copypasta-chain-channel!",
+    "message_451": ", and supporting Israel, a genocidal state, in the past or the present, is a moral crime.",
+    "message_452": ". Hello everyone reading! Welcome to the biennial tearing down of another toxic mfw that’s hurt too many. This mfw has primarily been active in the ways we’re discussing on AltverZ’s Discord. This doc will include bigotry such as transphobia, homophobia and slurs. They have regularly picked people, projects to be in their crosshairs of passive microaggressions all the way up to harassment, in and outside of their server.",
+    "message_453": " from Super Diddy Ages!",
+    "message_454": ". I am just ensuring that others do not hoard all the gas from the leak that is running rampant throughout at least two communities.",
+    "message_455": " With the nitro given to you by Random!",
+    "message_456": ". I don't want to spam ping, but I am still waiting for your response on this.\nIf you don't respond by today then I will just message you about it again tomorrow.\n\nMain point is, the winning vote was yes; Iceblazar should be banned.\nSaso's deal was called off by me, which I have proof for if needed.\nKaabab's deal was called off by kaabab; we made a NEW deal that I would not be a clot for 6 months if he voted YES, which I have proof for if needed.",
+    "message_457": ". Harvesting? Really? A man of your talents?",
+    "message_458": "... uhh... you probably shouldn't have harvested that... eh, anything goes.",
+    "message_459": ". Unban me from mfwcord and I’ll explain more about Prussia.",
+    "message_460": " after letting your nuts bust open on AE 13, :mnw: will kidnap you and throw you in his pool of white and sticky liquid, have fun drowning. Theres a new mfw in your collection",
+    "message_461": ", now STOP GEEKING.",
+    "message_462": " by jerking off to the thought of jerking off!",
+    "message_463": ". Tell the previous guy here that his jokes were really fucking unfunny.",
+    "message_464": " from AIPAC!",
+    "message_465": " from your closet!",
+    "message_466": " by being a good boy!",
+    "message_467": ". Ew!"
     },
     "quote": {
         "command": "quote",

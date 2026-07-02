@@ -16,6 +16,7 @@ from pathlib import Path
 from utils.misc import discover_cogs, get_env_var
 from utils.services.MemoryCache import init_cache_cleanup
 import utils.misc as misc
+from utils.services.spawn_manager.spawn import MfwSpawnManager
 
 load_dotenv()
 TOKEN: str|None = get_env_var("BOT_TOKEN", boolean=False)
@@ -89,6 +90,7 @@ class Omnibird(commands.Bot):
         intents = discord.Intents.default()
         intents.message_content = True
         super().__init__(command_prefix=BOT_PREFIX or "o!", intents=intents)
+        self.spawn_manager = MfwSpawnManager(self)
         self.hot_reloader: Optional[HotReloader] = None
         self._ready_once = False
         self.cog_index: dict[str, str] = discover_cogs()
@@ -140,7 +142,7 @@ bot = Omnibird()
 async def on_message(message):
     if message.author.bot:
         return
-
+    # await bot.spawn_manager.handle_message(message)
     username = str(message.author)
     channel = str(message.channel)
     user_message = str(message.content)

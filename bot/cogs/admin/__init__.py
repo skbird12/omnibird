@@ -6,6 +6,7 @@ from .commands.addguild import addguild
 from .commands.grant import grant
 from .commands.setadmin import setadmin
 from .commands.speak import speak
+from .commands.grantmoney import grantmoney
 
 class admin:
     restart = staticmethod(restart)
@@ -15,3 +16,4 @@ class admin:
     grant = staticmethod(grant)
     setadmin = staticmethod(setadmin)
     speak = staticmethod(speak)
+    grantmoney = staticmethod(grantmoney)

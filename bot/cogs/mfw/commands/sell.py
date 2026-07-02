@@ -6,10 +6,27 @@ from languages import l
 from aiomysql import Cursor
 
 async def sell(self, ctx, *values: str):
+    # Having mfws of rarity -2 increases their price by 20% (proportional)
+    PRICE_BUFF = 1.0
+    row = await db.fetch_one("""SELECT
+    COUNT(DISTINCT i.mfw_id) AS owned_count,
+    (
+    SELECT COUNT(m.id) FROM mfws m
+    WHERE m.rarity_id = -2
+    ) AS total_count
+    FROM inventory i
+    INNER JOIN mfws m ON i.mfw_id = m.id
+    WHERE i.user_id = %s AND m.rarity_id = -2""", (ctx.author.id,))
+    if row is not None: 
+        owned_count, total_count = row
+        if total_count > 0:
+            owned_ratio = owned_count/total_count
+            PRICE_BUFF += (0.2 * owned_ratio)
+
     if not values:
         rarities = await db.fetch_all("SELECT * FROM rarities", cache=True)
         rarity_map = {
-            r[0]: {"rarity": r[1], "price": (r[2] // 2) if r[2] is not None else None}
+            r[0]: {"rarity": r[1], "price": (int(r[2]*PRICE_BUFF) // 2) if r[2] is not None else None}
             for r in rarities
         }
         message_array = [""]
@@ -58,7 +75,7 @@ async def sell(self, ctx, *values: str):
             UPDATE users u
             JOIN (
                 SELECT i.user_id,
-                       COALESCE(SUM(vals.qty_to_sell * ROUND(r.price / 2)), 0) AS earned
+                       COALESCE(SUM(vals.qty_to_sell * ROUND((r.price*%s) / 2)), 0) AS earned
                 FROM inventory i
                 JOIN (
                     {values_select}
@@ -71,7 +88,7 @@ async def sell(self, ctx, *values: str):
             SET u.coins = u.coins + sub.earned
             WHERE u.id = %s
         """
-        upd_params = vals_params + [ctx.author.id, ctx.author.id]
+        upd_params = [PRICE_BUFF] + vals_params + [ctx.author.id, ctx.author.id]
         await cur.execute(update_sql, tuple(upd_params))
         await dbutils.cleanup_inventory(ctx.author.id, cur=cur)
         await cur.execute("SELECT coins FROM users WHERE id = %s", (ctx.author.id,))
