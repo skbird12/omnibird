@@ -7,16 +7,19 @@ import db
 import utils.pure.formatting as formatting
 import utils.pure.parsing as parsing
 
-async def sanitize_quantity(ctx, quantity : int|None|str, allow_zero=False):
+#TODO refactor this into just passing min_quality instead of this allow stuff
+async def sanitize_quantity(ctx, quantity : int|None|str, allow_zero=False, allow_negative=False):
     if (quantity == None):
             await ctx.send(l.text("quantity", "none"))
             return None
-    
-    min_quantity = 1
-    if allow_zero: min_quantity -= 1
+
+    if allow_negative: min_quantity = None
+    elif allow_zero: min_quantity = 0
+    else: min_quantity = 1
+
     try:
         quantity = int(quantity)
-        if quantity < min_quantity:
+        if min_quantity is not None and quantity < min_quantity:
             raise ValueError
     except (ValueError, TypeError):
         await ctx.send(l.text("quantity", "invalid"))

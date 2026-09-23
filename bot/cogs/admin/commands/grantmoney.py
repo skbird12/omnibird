@@ -9,7 +9,7 @@ async def grantmoney(self, ctx, user: discord.Member|None = None, amount: int|No
         await ctx.send(l.text("give", "no_target"))
         return
     
-    quantity = await discordutils.sanitize_quantity(ctx, amount)
+    quantity = await discordutils.sanitize_quantity(ctx, amount, allow_negative=True)
     if (quantity is None): return
     async with db.transaction() as cur:
         info = await dbutils.get_user_info(ctx.author.id, cur=cur, for_update=True) 

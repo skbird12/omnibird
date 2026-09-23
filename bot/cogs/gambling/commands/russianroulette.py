@@ -75,11 +75,15 @@ async def russianroulette(self, ctx, confirmation: str | None, mfw: str = '777')
                 await announce.edit(content=l.text("russianroulette", "spinning_the_gun", seconds=seconds))
             await asyncio.sleep(1)
             await announce.edit(content=l.text("russianroulette", "go"))
+            #TODO make a custom function for editing so we dont have to do try except all the time later
             msg = await ctx.send(render_roulette(players))
             for _ in range(rolls):
                 delay += (random.randint(0, 10)/100)
                 players = [players[-1]] + players[:-1]
-                await msg.edit(content=render_roulette(players))
+                try:
+                    await msg.edit(content=render_roulette(players))
+                except Exception:
+                    pass
                 await asyncio.sleep(0.3 + delay) 
             
             gun = "gun"
@@ -88,11 +92,15 @@ async def russianroulette(self, ctx, confirmation: str | None, mfw: str = '777')
                 if turn_around:
                     LOSER_INDEX = 5
                     gun = "nou"
-                    await msg.edit(content=render_roulette(players, gun=gun))
+                    try:
+                        msg.edit(content=render_roulette(players, gun=gun))
+                    except Exception:
+                        pass
                     await asyncio.sleep(1.5)
                 
             players[LOSER_INDEX]["mfw"] = l.text("_symbols", "ded")
-            await msg.edit(content=render_roulette(players, gun=gun))
+            try: await msg.edit(content=render_roulette(players, gun=gun))
+            except Exception: pass
             await asyncio.sleep(0.5)
             results = []
             blood_money = 0

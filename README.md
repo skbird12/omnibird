@@ -3,7 +3,7 @@ Omnibird is a Discord trading-card bot that turns server emojis into collectible
 Currently supports prefix commands only.
 
 ## Setup
-* Clone <https://github.com/ctsilva12/omnibird>
+* Clone <https://github.com/skbird12/omnibird>
 * Add your bot token to .env (create an .env file based on [.env.example](.env.example))
 ---
 ### Docker (Recommended)
